@@ -16,7 +16,7 @@ const Home = ({ products, bannerData }) => {
 
       <div className="products-container">
         {/* return product.name */}
-        {products?.map((product) => product.name)}
+        {products?.map((product) => <Product key = {product.id} product = {product} />)}
       </div>
 
       {/* a component */}
