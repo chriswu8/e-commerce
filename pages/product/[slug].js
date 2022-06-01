@@ -1,31 +1,33 @@
 // slug being inside of the square brackets mean that it's going to be dynamic
 
-import React from 'react'
+import React, { useState } from 'react'
 import { client, urlFor } from '../../lib/client';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { Product } from '../../components';
 
-
 const ProductDetails = ({ product, products }) => {
 
     const { image, name, details, price } = product;
-
+    const [index, setIndex] = useState(0);
     return (
         <div>
             <div className='product-detail-container'>
                 <div>
                     <div className='image-container'>
-                        <img src={urlFor(image && image[0])} />
+                        <img className='product-detail-image' src={urlFor(image && image[index])} />
                     </div>
-                    {/* <div className='small-images-container'>
+                    <div className='small-images-container'>
                         {image?.map((item, i) => (
                             <img
                                 src={urlFor(item)}
-                                className=''
-                                onMouseEnter=''
+                                className={i === index ?
+                                    'small-image selected-image' : 'small-image'
+                                }
+                                onMouseEnter={() => setIndex(i)
+                                }
                             />
                         ))}
-                    </div> */}
+                    </div>
                     <div className='product-detail-desc'>
                         <h1>{name}</h1>
                         <div className='reviews'>
@@ -70,7 +72,7 @@ const ProductDetails = ({ product, products }) => {
                     <h2> You may also like</h2>
                     {/* marquee refers to a scrolling part (usually divs) */}
                     <div className='marquee'>
-                        <div className='maylike-products-container'>
+                        <div className='maylike-products-container track'>
                             {products.map((item) => (
                                 <Product key={item._id}
                                     product={item} />
