@@ -725,7 +725,7 @@ span.text-red {
   margin-top: 10px;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1070px) {
   .brand {
     margin: autoad;
   }
