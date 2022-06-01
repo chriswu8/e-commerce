@@ -3,6 +3,8 @@
 import React from 'react'
 import { client, urlFor } from '../../lib/client';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { Product } from '../../components';
+
 
 const ProductDetails = ({ product, products }) => {
 
@@ -24,7 +26,7 @@ const ProductDetails = ({ product, products }) => {
                             />
                         ))}
                     </div> */}
-                    <div className='product-details-desc'>
+                    <div className='product-detail-desc'>
                         <h1>{name}</h1>
                         <div className='reviews'>
                             <div>
@@ -61,6 +63,18 @@ const ProductDetails = ({ product, products }) => {
                             <button type='button' className='buy-now' onClick="">
                                 Buy Now
                             </button>
+                        </div>
+                    </div>
+                </div>
+                <div className='maylike-products-wrapper'>
+                    <h2> You may also like</h2>
+                    {/* marquee refers to a scrolling part (usually divs) */}
+                    <div className='marquee'>
+                        <div className='maylike-products-container'>
+                            {products.map((item) => (
+                                <Product key={item._id}
+                                    product={item} />
+                            ))}
                         </div>
                     </div>
                 </div>
