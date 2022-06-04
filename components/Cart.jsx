@@ -9,8 +9,7 @@ import { toNamespacedPath } from 'path';
 
 const Cart = () => {
   const CartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart } = useStateContext();
-
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
   return (
     <div className='cart-wrapper' ref={CartRef}>
       <div className='cart-container'>
@@ -49,9 +48,13 @@ const Cart = () => {
                 <div className='flex bottom'>
                   <div>
                     <p className="quantity-desc">
-                      <span className="minus" onClick=""><AiOutlineMinus /></span>
-                      <span className="num">0</span>
-                      <span className="plus" onClick=""><AiOutlinePlus /></span>
+                      <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec')}>
+                        <AiOutlineMinus />
+                      </span>
+                      <span className="num" onClick="">{item.quantity}</span>
+                      <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc')}>
+                        <AiOutlinePlus />
+                      </span>
                     </p>
                   </div>
                   <button type='button' className='remove-item' onClick="">
