@@ -8,7 +8,7 @@ import { urlFor } from '../lib/client';
 import getStripe from '../lib/getStripe';
 
 const Cart = () => {
-  const CartRef = useRef();
+  const cartRef = useRef();
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
 
   const handleCheckout = async () => {
@@ -32,7 +32,7 @@ const Cart = () => {
   }
 
   return (
-    <div className='cart-wrapper' ref={CartRef}>
+    <div className='cart-wrapper' ref={cartRef}>
       <div className='cart-container'>
         <button
           type='button'
@@ -58,7 +58,7 @@ const Cart = () => {
         )}
         <div className='product-container'>
           {/* loop through the products and display the product image once one or more of it is added to cart*/}
-          {cartItems.length >= 1 && cartItems.map((item, index) => (
+          {cartItems.length >= 1 && cartItems.map((item) => (
             <div className='product' key={item._id}>
               <img src={urlFor(item?.image[0])} className="cart-product-image" />
               <div className='item-desc'>
@@ -72,7 +72,7 @@ const Cart = () => {
                       <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec')}>
                         <AiOutlineMinus />
                       </span>
-                      <span className="num" onClick="">{item.quantity}</span>
+                      <span className="num">{item.quantity}</span>
                       <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc')}>
                         <AiOutlinePlus />
                       </span>
@@ -104,4 +104,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default Cart;

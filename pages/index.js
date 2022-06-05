@@ -1,31 +1,23 @@
 import React from 'react';
-import { Product, FooterBanner, HeroBanner } from '../components';
 import { client } from '../lib/client';
+import { Product, FooterBanner, HeroBanner } from '../components';
 
-const Home = ({ products, bannerData }) => {
-  return (
-    <>
-      {/* a component */}
-      <HeroBanner heroBanner = {bannerData.length && bannerData[0]} />
-      {/* {console.log(bannerData)} */}  
+const Home = ({ products, bannerData }) => (
+  <div>
+    <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
+    <div className="products-heading">
+      <h2>Best Seller Products</h2>
+      <p>speaker There are many variations passages</p>
+    </div>
 
-      <div className="products-heading">
-        <h2> Best Selling Products</h2>
-        <p> Some incredible description</p>
-      </div>
+    <div className="products-container">
+      {products?.map((product) => <Product key={product._id} product={product} />)}
+    </div>
 
-      <div className="products-container">
-        {/* return product.name */}
-        {products?.map((product) => <Product key = {product.id} product = {product} />)}
-      </div>
+    <FooterBanner footerBanner={bannerData && bannerData[0]} />
+  </div>
+);
 
-      {/* a component */}
-      <FooterBanner footerBanner = {bannerData && bannerData[0]} />
-    </>
-  )
-}
-
-// whatever getServerSideProps returns, that gets populated into our function
 export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
@@ -38,4 +30,4 @@ export const getServerSideProps = async () => {
   }
 }
 
-export default Home
+export default Home;

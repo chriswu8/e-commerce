@@ -13,7 +13,6 @@ const ProductDetails = ({ product, products }) => {
 
     const handleBuyNow = () => {
         onAdd(product, qty);
-
         setShowCart(true);
     }
 
@@ -123,4 +122,4 @@ export const getStaticProps = async ({ params: { slug } }) => {
 }
 
 
-export default ProductDetails
+export default ProductDetails;
