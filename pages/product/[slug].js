@@ -1,7 +1,6 @@
-// slug being inside of the square brackets mean that it's going to be dynamic
-
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+
 import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
@@ -13,6 +12,7 @@ const ProductDetails = ({ product, products }) => {
 
     const handleBuyNow = () => {
         onAdd(product, qty);
+
         setShowCart(true);
     }
 
@@ -81,15 +81,16 @@ const ProductDetails = ({ product, products }) => {
     )
 }
 
-// DOCUMENTATION: https://nextjs.org/docs/basic-features/data-fetching/get-static-paths
 export const getStaticPaths = async () => {
     const query = `*[_type == "product"] {
-        slug {
-            current
-        }
-    }`;
+    slug {
+      current
+    }
+  }
+  `;
 
     const products = await client.fetch(query);
+
     const paths = products.map((product) => ({
         params: {
             slug: product.slug.current
@@ -98,28 +99,22 @@ export const getStaticPaths = async () => {
 
     return {
         paths,
-        fallback: 'blocking' // getStaticProps is called before initial render
+        fallback: 'blocking'
     }
 }
 
-
-
-// have Next.js pre-render this page at build time 
 export const getStaticProps = async ({ params: { slug } }) => {
-    // fetch product details on the page that we're on
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-
-    // fetch all similar products
-    const productsQuery = '*[_type == "product"]';
+    const productsQuery = '*[_type == "product"]'
 
     const product = await client.fetch(query);
     const products = await client.fetch(productsQuery);
 
     console.log(product);
+
     return {
         props: { products, product }
     }
 }
 
-
-export default ProductDetails;
+export default ProductDetails
