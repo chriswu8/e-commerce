@@ -170,7 +170,7 @@ span.text-red {
 
 }
 
-.hero-banner-container .beats-solo {
+.hero-banner-container .heroBannerSmall {
   font-size: 20px;
 }
 
@@ -268,6 +268,7 @@ span.text-red {
 .banner-desc {
   display: flex;
   justify-content: space-between;
+  top: -17vh;
 }
 
 .banner-desc button {
@@ -290,14 +291,6 @@ span.text-red {
 
 .banner-desc .left p {
   margin: 18px;
-}
-
-.footer-banner-image {
-  position: absolute;
-  top: 20%;
-  left: 34%;
-  max-width: 15vw;
-  border-radius: 20px;
 }
 
 .banner-desc .right {
@@ -325,16 +318,16 @@ span.text-red {
   right: 0;
   top: 0;
   z-index: 100;
-  /* will-change: transform; */
+  will-change: transform; 
   transition: all 1s ease-in-out;
 
 }
 
 .cart-container {
   height: 100vh;
-  width: 600px;
-  background-color: white;
-  float: right;
+  width: 23vw;
+  background-color: rgb(255, 255, 255);
+  float: left;
   padding: 40px 10px;
   position: relative;
 
@@ -745,7 +738,7 @@ span.text-red {
   }
 
   .footer-banner-container {
-    height: 560px;
+    height: 470px;
     margin-top: 80px;
   }
 
@@ -753,14 +746,8 @@ span.text-red {
     display: none;
   }
 
-  .banner-desc .left h3 {
-    font-weight: 900;
-    font-size: 50px;
-    margin-left: 5px;
-  }
-
-  .banner-desc .left p {
-    margin: 18px;
+  .banner-desc .left {
+    display: none;
   }
 
   .banner-desc .right h3 {
@@ -777,7 +764,7 @@ span.text-red {
 
   .banner-desc {
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 5px;
   }
 
   .hero-banner-container {
@@ -811,7 +798,8 @@ span.text-red {
   }
 
   .cart-container {
-    width: 415px;
+    width: 375px;
+    height: 105vh;
     padding: 4px;
   }
 
